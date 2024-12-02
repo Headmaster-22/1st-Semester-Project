@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGlide Motors</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div class="logo">
+      <img src="logo.webp" alt="AutoGlide Motors Logo">
+    </div>
+    <div class="visitor-count">
+      <p>Visitor Count: 120</p>
+    </div>
+  </header>
+
+  <!-- Banner Section (image as background) -->
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Welcome to AutoGlide Motors</h1>
+      <p>Your trusted dealership for new and used cars</p>
+    </div>
+  </section>
+
+  <!-- Navigation Menu -->
+  <div class="menu">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">New Cars</a></li>
+      <li><a href="#">Used Cars</a></li>
+      <li><a href="#">Brands</a></li>
+      <li><a href="#">Offers</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- New Cars Section -->
+<!-- New Cars Section -->
+<section id="new-cars">
+    <h2>New Cars</h2>
+    <div class="car-list">
+        <div class="car-card" onclick="showCarDetails('new-car-1')">
+            <img src="tesla.jpg" alt="Tesla Model 3">
+            <h3>Tesla Model 3</h3>
+            <p>Starting at $39,990</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('new-car-2')">
+            <img src="ford.jpg" alt="Ford Mustang Mach-E">
+            <h3>Ford Mustang Mach-E</h3>
+            <p>Starting at $49,995</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('new-car-3')">
+            <img src="bmw.jpg" alt="BMW i4">
+            <h3>BMW i4</h3>
+            <p>Starting at $56,400</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('new-car-4')">
+            <img src="audi.jpg" alt="Audi Q4 e-tron">
+            <h3>Audi Q4 e-tron</h3>
+            <p>Starting at $52,400</p>
+        </div>
+    </div>
+</section>
+
+<!-- Used Cars Section -->
+<section id="used-cars">
+    <h2>Used Cars</h2>
+    <div class="car-list">
+        <div class="car-card" onclick="showCarDetails('used-car-1')">
+            <img src="toyota.jpg" alt="Used Toyota Camry">
+            <h3>Used Toyota Camry</h3>
+            <p>Starting at $20,000</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('used-car-2')">
+            <img src="honda.jpg" alt="Used Honda Accord">
+            <h3>Used Honda Accord</h3>
+            <p>Starting at $18,500</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('used-car-3')">
+            <img src="nissan.jpg" alt="Used Nissan Altima">
+            <h3>Used Nissan Altima</h3>
+            <p>Starting at $16,000</p>
+        </div>
+        <div class="car-card" onclick="showCarDetails('used-car-4')">
+            <img src="chevrolet.jpg" alt="Used Chevrolet Malibu">
+            <h3>Used Chevrolet Malibu</h3>
+            <p>Starting at $14,500</p>
+        </div>
+    </div>
+<!-- Brands Section -->
+<section id="car-brands">
+    <h2>Our Car Brands</h2>
+    <div class="brand-list">
+        <div class="brand-card" onclick="showCarsByBrand('Tesla')">
+            <img src="tesla-logo.png" alt="Tesla Logo">
+            <h3>Tesla</h3>
+        </div>
+        <div class="brand-card" onclick="showCarsByBrand('Ford')">
+            <img src="ford-logo.jpg" alt="Ford Logo">
+            <h3>Ford</h3>
+        </div>
+        <div class="brand-card" onclick="showCarsByBrand('BMW')">
+            <img src="bmw-logo.png" alt="BMW Logo">
+            <h3>BMW</h3>
+        </div>
+        <div class="brand-card" onclick="showCarsByBrand('Audi')">
+            <img src="audi-logo.png" alt="Audi Logo">
+            <h3>Audi</h3>
+        </div>
+        <div class="brand-card" onclick="showCarsByBrand('Toyota')">
+            <img src="toyota-logo.png" alt="Toyota Logo">
+            <h3>Toyota</h3>
+        </div>
+        <div class="brand-card" onclick="showCarsByBrand('Honda')">
+            <img src="honda-logo.png" alt="Honda Logo">
+            <h3>Honda</h3>
+        </div>
+        <!-- Add more brands as needed -->
+    </div>
+</section>
+
+<!-- Cars by Brand Section (hidden initially) -->
+<section id="cars-by-brand" style="display: none;">
+    <h2>Cars by <span id="brand-name"></span></h2>
+    <div class="car-list" id="brand-cars-list"></div>
+    <button class="back-button" onclick="goBackToBrands()">Back to Brands</button>
+</section>
+ <!-- Popup Overlay (for car details) -->
+<div id="car-popup-overlay" class="popup-overlay" style="display: none;">
+    <div class="car-detail-popup">
+        <h3 id="popup-car-name"></h3>
+        <p id="popup-car-price"></p>
+        <div>
+            <h4>Internal Specifications</h4>
+            <p id="popup-internal-specs"></p>
+        </div>
+        <div>
+            <h4>External Specifications</h4>
+            <p id="popup-external-specs"></p>
+        </div>
+        <div>
+            <h4>Engine</h4>
+            <p id="popup-engine"></p>
+        </div>
+        <div>
+            <h4>Dimensions</h4>
+            <p id="popup-dimensions"></p>
+        </div>
+        <button class="close-popup" onclick="closeCarPopup()">Close</button>
+    </div>
+</div>
+<h1 style="font-weight: bold;">Gallery</h1>
+    
+<div class="filter-section">
+    <h2>Filter by Type:</h2>
+    <div class="filter-box">
+        <i class="fas fa-filter filter-icon"></i>
+        <select id="vehicleType" onchange="filterVehicles()">
+            <option value="">--Select Vehicle Type--</option>
+            <option value="Hatchbacks">Hatchbacks</option>
+            <option value="Sedan">Sedan</option>
+            <option value="SUV">SUV</option>
+            <option value="Convertibles">Convertibles</option>
+            <option value="Coupes">Coupes</option>
+            <option value="Trucks">Trucks</option>
+            <option value="Vans">Vans</option>
+            <option value="Electric Vehicles">Electric Vehicles</option>
+            <option value="Hybrid Vehicles">Hybrid Vehicles</option>
+        </select>
+    </div>
+</div>
+
+<div class="vehicle-list" id="vehicleList">
+    <h2>Available Vehicles:</h2>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Toyota Corolla Hatchback.jpg" alt="Toyota Corolla Hatchback">
+        <h3>Toyota Corolla Hatchback</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Volkswagen Golf.jpg" alt="Volkswagen Golf">
+        <h3>Volkswagen Golf</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Honda Civic Hatchback.jpg" alt="Honda Civic Hatchback">
+        <h3>Honda Civic Hatchback</h3>
+    </div>
+<div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/mazda3 hatchback.jpg" alt="Mazda3 Hatchback">
+        <h3>Mazda3 Hatchback</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Ford Focus Hatchback.jpg" alt="Ford Focus Hatchback">
+        <h3>Ford Focus Hatchback</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Hyundai Elantra GT.jpg" alt="Hyundai Elantra GT">
+        <h3>Hyundai Elantra GT</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Subaru Impreza Hatchback.jpg" alt="Subaru Impreza Hatchback">
+        <h3>Subaru Impreza Hatchback</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Kia Forte5.jpg" alt="Kia Forte5">
+        <h3>Kia Forte5</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Chevrolet Spark.jpg" alt="Chevrolet Spark">
+        <h3>Chevrolet Spark</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hatchbacks">
+        <img src="gallery/Nissan Versa Note.jpg" alt="Nissan Versa Note">
+        <h3>Nissan Versa Note</h3>
+    </div>
+    
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Toyota Camry.jpg" alt="Toyota Camry">
+        <h3>Toyota Camry</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Honda Accord.jpg" alt="Honda Accord">
+        <h3>Honda Accord</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Nissan Altima.jpg" alt="Nissan Altima">
+        <h3>Nissan Altima</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Hyundai Sonata.jpg" alt="Hyundai Sonata">
+        <h3>Hyundai Sonata</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Ford Fusion.jpg" alt="Ford Fusion">
+        <h3>Ford Fusion</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Chevrolet Malibu.jpg" alt="Chevrolet Malibu">
+        <h3>Chevrolet Malibu</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Kia K5.jpg" alt="Kia K5">
+        <h3>Kia K5</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Subaru Legacy.jpg" alt="Subaru Legacy">
+        <h3>Subaru Legacy</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Volkswagen Passat.jpg" alt="Volkswagen Passat">
+        <h3>Volkswagen Passat</h3>
+    </div>
+    <div class="vehicle-item" data-type="Sedan">
+        <img src="gallery/Mazda6.jpg" alt="Mazda6">
+        <h3>Mazda6</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Toyota RAV4.jpg" alt="Toyota RAV4">
+        <h3>Toyota RAV4</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Honda CR-V.jpg" alt="Honda CR-V">
+        <h3>Honda CR-V</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Ford Escape.jpg" alt="Ford Escape">
+        <h3>Ford Escape</ h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Chevrolet Equinox.jpg" alt="Chevrolet Equinox">
+        <h3>Chevrolet Equinox</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Nissan Rogue.jpg" alt="Nissan Rogue">
+        <h3>Nissan Rogue</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Hyundai Tucson.jpg" alt="Hyundai Tucson">
+        <h3>Hyundai Tucson</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Subaru Forester.jpg" alt="Subaru Forester">
+        <h3>Subaru Forester</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Kia Sportage.jpg" alt="Kia Sportage">
+        <h3>Kia Sportage</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Mazda CX-5.jpg" alt="Mazda CX-5">
+        <h3>Mazda CX-5</h3>
+    </div>
+    <div class="vehicle-item" data-type="SUV">
+        <img src="gallery/Volkswagen Tiguan.jpg" alt="Volkswagen Tiguan">
+        <h3>Volkswagen Tiguan</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Mazda MX-5 Miata.jpg" alt="Mazda MX-5 Miata">
+        <h3>Mazda MX-5 Miata</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Ford Mustang Convertible.jpg" alt="Ford Mustang Convertible">
+        <h3>Ford Mustang Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Chevrolet Camaro Convertible.jpg" alt="Chevrolet Camaro Convertible">
+        <h3>Chevrolet Camaro Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/BMW Z4.jpg" alt="BMW Z4">
+        <h3>BMW Z4</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Mercedes-Benz C-Class Convertible.jpg" alt="Mercedes-Benz C-Class Convertible">
+        <h3>Mercedes-Benz C-Class Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Porsche 911 Convertible.jpg" alt="Porsche 911 Convertible">
+        <h3>Porsche 911 Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Audi A5 Convertible.jpg" alt="Audi A5 Convertible">
+        <h3>Audi A5 Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Jaguar F-Type Convertible.jpg" alt="Jaguar F-Type Convertible">
+        <h3>Jaguar F-Type Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Mini Cooper Convertible.jpg" alt="Mini Cooper Convertible">
+        <h3>Mini Cooper Convertible</h3>
+    </div>
+    <div class="vehicle-item" data-type="Convertibles">
+        <img src="gallery/Fiat 124 Spider.jpg" alt="Fiat 124 Spider">
+        <h3>Fiat 124 Spider</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Ford Mustang.jpg" alt="Ford Mustang">
+        <h3>Ford Mustang</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Chevrolet Camaro.jpg" alt="Chevrolet Camaro">
+        <h3>Chevrolet Camaro</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Dodge Challenger.jpg" alt="Dodge Challenger">
+        <h3>Dodge Challenger</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/BMW 4 Series.jpg" alt="BMW 4 Series">
+        <h3>BMW 4 Series</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/audi a5.jpg" alt="Audi A5">
+        <h3>Audi A5</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Mercedes-Benz C-Class Coupe.jpg" alt="Mercedes-Benz C-Class Coupe">
+        <h3>Mercedes-Benz C-Class Coupe</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Nissan 370Z.jpg" alt="Nissan 370Z">
+        <h3>Nissan 370Z</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Toyota GR86.jpg" alt="Toyota GR86">
+        <h3>Toyota GR86</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Subaru BRZ.jpg" alt="Subaru BRZ">
+        <h3>Subaru BRZ</h3>
+    </div>
+    <div class="vehicle-item" data-type="Coupes">
+        <img src="gallery/Porsche 718 Cayman.jpg" alt="Porsche 718 Cayman">
+        <h3>Porsche 718 Cayman</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Ford F-150.jpg" alt="Ford F-150">
+        <h3>Ford F-150</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Chevrolet Silverado.jpg" alt="Chevrolet Silverado">
+        <h3>Chevrolet Silverado</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Ram 1500.jpg" alt="Ram 1500">
+        <h3>Ram 1500</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Toyota Tundra.jpg" alt="Toyota Tundra">
+        <h3>Toyota Tundra</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Nissan Titan.jpg" alt="Nissan Titan">
+        <h3>Nissan Titan</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/GMC Sierra.jpg" alt="GMC Sierra">
+        <h3>GMC Sierra</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Chevrolet Colorado.jpg" alt="Chevrolet Colorado">
+        <h3>Chevrolet Colorado</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Ford Ranger.jpg" alt="Ford Ranger">
+        <h3>Ford Ranger</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Honda Ridgeline.jpg" alt="Honda Ridgeline">
+        <h3>Honda Ridgeline</h3>
+    </div>
+    <div class="vehicle-item" data-type="Trucks">
+        <img src="gallery/Hyundai Santa Cruz.jpg" alt="Hyundai Santa Cruz">
+        <h3>Hyundai Santa Cruz</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Honda Odyssey.jpg" alt="Honda Odyssey">
+        <h3>Honda Odyssey</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Chrysler Pacifica.jpg" alt="Chrysler Pacifica">
+        <h3>Chrysler Pacifica</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Toyota Sienna.jpg" alt=" Toyota Sienna">
+        <h3>Toyota Sienna</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Kia Carnival.jpg" alt="Kia Carnival">
+        <h3>Kia Carnival</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Chrysler Voyager.jpg" alt="Chrysler Voyager">
+        <h3>Chrysler Voyager</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Mercedes-Benz Metris.jpg" alt="Mercedes-Benz Metris">
+        <h3>Mercedes-Benz Metris</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Nissan NV3500.jpg" alt="Nissan NV3500">
+        <h3>Nissan NV3500</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Ram ProMaster City.jpg" alt="Ram ProMaster City">
+        <h3>Ram ProMaster City</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Ford Transit Connect.jpg" alt="Ford Transit Connect">
+        <h3>Ford Transit Connect</h3>
+    </div>
+    <div class="vehicle-item" data-type="Vans">
+        <img src="gallery/Chevrolet Express.jpg" alt="Chevrolet Express">
+        <h3>Chevrolet Express</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Tesla Model 3.jpg" alt="Tesla Model 3">
+        <h3>Tesla Model 3</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Nissan Leaf.jpg" alt="Nissan Leaf">
+        <h3>Nissan Leaf</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Chevrolet Bolt EV.jpg" alt="Chevrolet Bolt EV">
+        <h3>Chevrolet Bolt EV</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Ford Mustang Mach-E.jpg" alt="Ford Mustang Mach-E">
+        <h3>Ford Mustang Mach-E</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Hyundai Kona Electric.jpg" alt="Hyundai Kona Electric">
+        <h3>Hyundai Kona Electric</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Volkswagen ID.4.jpg" alt="Volkswagen ID.4">
+        <h3>Volkswagen ID.4</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Porsche Taycan.jpg" alt="Porsche Taycan">
+        <h3>Porsche Taycan</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Audi e-tron.jpg" alt="Audi e-tron">
+        <h3>Audi e-tron</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Rivian R1T.jpg" alt="Rivian R1T">
+        <h3>Rivian R1T</h3>
+    </div>
+    <div class="vehicle-item" data-type="Electric Vehicles">
+        <img src="gallery/Lucid Air.jpg" alt="Lucid Air">
+        <h3>Lucid Air</h3>
+    </div>
+
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Toyota Prius.jpg" alt="Toyota Prius">
+        <h3>Toyota Prius</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Honda Insight.jpg" alt="Honda Insight">
+        <h3>Honda Insight</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Ford Escape Hybrid.jpg" alt="Ford Escape Hybrid">
+        <h3>Ford Escape Hybrid</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Toyota RAV4 Hybrid.jpg" alt="Toyota RAV4 Hybrid">
+        <h3>Toyota RAV4 Hybrid</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Hyundai Ioniq Hybrid.jpg" alt="Hyundai Ioniq Hybrid">
+        <h3>Hyundai Ioniq Hybrid</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Kia Niro Hybrid.jpg" alt="Kia Niro Hybrid">
+        <h3>Kia Niro Hybrid</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Subaru Crosstrek Hybrid.jpg" alt="Subaru Crosstrek Hybrid">
+        <h3>Subaru Crosstrek Hybrid</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Lexus ES 300h.jpg" alt="Lexus ES 300h">
+        <h3>Lexus ES 300h</h3>
+    </div>
+    <div class="vehicle-item" data-type="Hybrid Vehicles">
+        <img src="gallery/Toyota Avalon Hybrid.jpg" alt="Toyota Avalon Hybrid">
+        <h3>Toyota Avalon Hybrid</h3>
+    </div>
+</div>
+
+<div class="offers-section">
+    <h2>Current Offers:</h2>
+    <ul class="offer-list">
+        <li>Get 0% APR financing for 60 months on select models!</li>
+        <li>Trade-in your old vehicle and get up to $5,000 off your new purchase!</li>
+        <li>Lease a new SUV for as low as $199/month!</li>
+        <li>Special discounts for military personnel and first responders!</li>
+        <li>Free maintenance for the first year on all new vehicles!</li>
+    </ul>
+</div>
+
+<script>
+    function filterVehicles() {
+        const selectedType = document.getElementById('vehicleType').value;
+        const vehicles = document.querySelectorAll('.vehicle-item');
+        vehicles.forEach(vehicle => {
+            if (selectedType === "" || vehicle.getAttribute('data-type') === selectedType) {
+                vehicle.style.display = 'block';
+            } else {
+                vehicle.style.display = 'none';
+            }
+        });
+    }
+</script>
+<section style="text-align: center;" id="sitemap">
+    <h2>Site Map</h2>
+    <p>An overview of the website's structure:</p>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#aboutus">About Us</a></li>
+        <li><a href="#queries">Queries</a></li>
+        <li><a href="#contactus">Contact Us</a></li>
+    </ul>
+</section>
+
+<section style="text-align: center;" id="aboutus">
+    <h2>About Us</h2>
+    <p>We are dedicated to providing the best services to our customers. Our mission is to make a positive impact by [insert mission statement here].</p>
+    <h3>Contact Information:</h3>
+    <ul>
+        <li>Email: <a href="mailto:info@example.com">info@example.com</a></li>
+        <li>Address: 1234 Example St, City, State, ZIP Code</li>
+        <li>Contact Number: <a href="tel:+11234567890">(123) 456-7890</a></li>
+    </ul>
+</section>
+
+<section style="text-align: center;" id="queries">
+    <h2 style="text-align: center;">Queries</h2>
+    <p>Here are some frequently asked questions:</p>
+    <ul>
+        <li><strong>Q:</strong> [ "If I had asked people what they wanted, they would have said faster horses." — Henry Ford (Ford Motor Company)]<br><strong>A:</strong> [Ford's legacy speaks to innovation and creating solutions that people never knew they needed. This philosophy led to the mass production of the automobile, transforming transportation forever.]</li>
+        <li><strong>Q:</strong> ["When something is important enough, you do it even if the odds are not in your favor." — Elon Musk (Tesla, Inc.)]<br><strong>A:</strong> [Tesla embodies this principle by pushing the boundaries of electric vehicles and renewable energy, even in the face of skepticism and challenges in the automotive industry.
+            ]</li>
+    </ul>
+    <p>Feel free to submit your specific queries below:</p>
+</section>
+
+<section id="contactus">
+   
+        <form id="contactForm" class="space-y-4">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="name" 
+                        placeholder="Full Name" 
+                        required
+                        class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none"
+                    >
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="Email Address" 
+                        required
+                        class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none"
+                    >
+                        </svg>
+                    </span>
+                </div>
+
+                <div class="relative">
+                    <textarea 
+                        id="message" 
+                        placeholder="Your Message" 
+                        required
+                        rows="4"
+                        class="input-field w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none resize-none"
+                    ></textarea>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="w-full bg-primary-color text-white py-3 rounded-lg hover:bg-gray-600 transition duration-300 transform hover:scale-105"
+                >
+                    Send Message
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-600 mb-4">Or connect with:</p>
+                <div class="flex justify-center space-x-4">
+                    <button class="social-btn bg-gray-600 text-white p-3 rounded-full">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/>
+                        </svg>
+                    </button>
+                    <button class="social-btn bg-gray-400 text-white p-3 rounded-full">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/>
+                        </svg>
+                    </button>
+                    <button class="social-btn bg-red-500 text-white p-3 rounded-full">
+                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.5 8.5h-4.5v-1c0-.5.5-1 1-1h3v-3h-3c-2.5 0-4 1.5-4 4v1h-2v3h2v8h3v-8h2.5l.5-3z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <ul class="text-gray-600">
+                    <li>Email: <a href="mailto:info@example.com" class="text-blue-500">info@example.com</a></li>
+                    <li>Address: 1234 Example St, City, State, ZIP Code</li <li>Contact Number: <a href="tel:+11234567890" class="text-blue-500">(123) 456-7890</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> 
+</section>
+ <!-- Footer -->
+<footer style="text-align: center;">
+    <p>&copy; 2024 AutoGlide Motors. All Rights Reserved.</p>
+    <div class="ticker" id="ticker"></div>  
+
+  </footer>
+  
+
+  <!-- Linking the external JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
